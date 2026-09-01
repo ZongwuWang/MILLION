@@ -28,6 +28,7 @@ if __name__ == "__main__":
     # ================== Argument Parsing ==================
     parser = argparse.ArgumentParser(description="ModelDB")
     parser.add_argument("-f", "--file", type=str, help="Relative path to config.json. Relative to scripts/modeldb/configs/", required=True)
+    parser.add_argument("--weights", type=str, help="Path to model weights", required=False, default=None)
     parser.add_argument("-d", "--dataset", type=str, help="Dataset name", required=False)
     parser.add_argument("-M", type=int, help="PQ config, number of sub-sections", required=False)
     parser.add_argument("--nbits", type=int, help="PQ config, number of bits per sub-section", required=False)
@@ -82,7 +83,12 @@ if __name__ == "__main__":
     config.model_root = config.root / "models"
     config.datasets_root = config.root / "datasets" 
 
-    config.model_path = config.model_root / config.folder
+    if args.weights is not None:
+        config.folder = pathlib.Path(args.weights).name
+        config.model_path = pathlib.Path(args.weights)
+    else:
+        config.model_path = config.model_root / config.folder
+    
     config.sample_root = config.root / "kv_samples" / config.model_name / config.dataset
     config.cent_root = config.root / "centroids" / config.model_name / config.dataset
 

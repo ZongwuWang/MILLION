@@ -1,5 +1,6 @@
 from ...utils.ContextList import ContextList
 from dataclasses import dataclass
+from typing import ContextManager
 import importlib
 
 @dataclass(frozen=True)
@@ -8,6 +9,8 @@ class ModelContext:
     baseline_context: ContextList
     sampling_context: ContextList
     evaluation_context: ContextList
+    qat_codebook_register: ContextManager
+    qat_context: ContextList
 
 registery = {}
 

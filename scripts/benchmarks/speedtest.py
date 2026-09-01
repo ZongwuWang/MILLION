@@ -8,7 +8,7 @@ from itertools import product
 from ..utils.escape_codes import BLUE, END, escape_code_factory as ecf
 
 prefill_lengths = [1024, 2048, 4096, 8192, 16384, 32768]
-prefill_lengths = [1024, 2048, 4096, 8192, 16384]
+# prefill_lengths = [1024, 2048, 4096, 8192, 16384]
 # prefill_lengths = [4096]
 # prefill_lengths = [32768]
 decoding_lengths = [129]
